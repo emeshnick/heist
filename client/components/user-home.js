@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import MapGl from './MapGl'
+import Dropdown from './Dropdown'
 
+const items = []
 /**
  * COMPONENT
  */
@@ -12,6 +14,7 @@ export const UserHome = props => {
   return (
     <div>
       <h3>Welcome, {email}</h3>
+      <Dropdown title="Messages" items={items} multiSelect />
       <MapGl />
     </div>
   )
