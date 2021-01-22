@@ -3,16 +3,28 @@ const pkg = require('../../package.json')
 
 const databaseName = pkg.name + (process.env.NODE_ENV === 'test' ? '-test' : '')
 
+const ssl = process.env.DATABASE_URL
+  ? {
+      ssl: false,
+      dialectOptions: {
+        ssl: {require: process.env.DATABASE_URL, rejectUnauthorized: false},
+        native: true
+      }
+    }
+  : null
+console.log(process.env.DATABASE_URL)
 const db = new Sequelize(
   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
   {
     logging: false,
     dialect: 'postgres',
     protocol: 'postgres',
-    ssl: true,
-    dialectOptions: {
-      ssl: {require: true, rejectUnauthorized: false}
-    }
+    ssl
+    // ssl: false,
+    // dialectOptions: {
+    //   ssl: {require: process.env.DATABASE_URL, rejectUnauthorized: false},
+    //   native: true,
+    // },
   }
 )
 module.exports = db
