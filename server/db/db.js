@@ -12,8 +12,7 @@ const db = new Sequelize(
     protocol: 'postgres',
     ssl: true,
     dialectOptions: {
-      ssl: true,
-      rejectUnauthorized: false
+      ssl: {require: true, rejectUnauthorized: false}
     }
   }
 )
