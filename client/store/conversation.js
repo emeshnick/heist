@@ -4,6 +4,7 @@ import socket from '../socket'
 const ADD_MESSAGE = 'ADD_MESSAGE'
 const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
 const FETCH_CONVERSATION = 'FETCH_CONVERSATION'
+const SELECT_CONVERSATION = 'SELECT_CONVERSATION'
 
 //Action creator to add message by sending updated conversation
 const addedMessage = message => {
@@ -18,6 +19,14 @@ const fetchedConversation = conversation => {
   return {
     type: FETCH_CONVERSATION,
     conversation
+  }
+}
+
+//Dispatched to select conversation
+export const selectConversation = conversationId => {
+  return {
+    type: SELECT_CONVERSATION,
+    conversationId
   }
 }
 
@@ -67,6 +76,8 @@ export default function(state = {}, action) {
       return {...state, messages: [...state.messages, action.message]}
     case FETCH_CONVERSATION:
       return action.conversation
+    case SELECT_CONVERSATION:
+      return {id: action.conversationId}
     default:
       return state
   }

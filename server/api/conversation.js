@@ -38,6 +38,17 @@ router.get('/:conversationId', async (req, res, next) => {
   }
 })
 
+router.put('/', async (req, res, next) => {
+  try {
+    const newGroup = await Conversation.create()
+    const participant = await User.findByPk(req.body.data.participantId)
+    newGroup.addParticipant(participant)
+    res.json(newGroup)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.get('/:conversationId/participants', async (req, res, next) => {
   try {
     const groups = await Conversation.findAll({

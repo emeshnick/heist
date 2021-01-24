@@ -5,8 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import conversation from './conversation'
 import groups from './groups'
+import markers from './markers'
 
-const reducer = combineReducers({user, conversation, groups})
+const reducer = combineReducers({user, conversation, groups, markers})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

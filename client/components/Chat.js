@@ -20,7 +20,7 @@ class Chat extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchConversation(1)
+    this.props.fetchConversation(this.props.conversationId)
   }
 
   //Socket method

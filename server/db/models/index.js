@@ -1,6 +1,7 @@
 const User = require('./user')
 const Message = require('./message')
 const Conversation = require('./conversation')
+const Marker = require('./marker')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -12,6 +13,7 @@ const Conversation = require('./conversation')
 User.belongsToMany(Conversation, {through: 'threadUser', as: 'group'})
 Conversation.belongsToMany(User, {through: 'threadUser', as: 'participant'})
 Conversation.hasMany(Message)
+Conversation.hasMany(Marker)
 Message.belongsTo(User)
 Message.belongsTo(Conversation)
 
@@ -24,5 +26,6 @@ Message.belongsTo(Conversation)
 module.exports = {
   User,
   Message,
-  Conversation
+  Conversation,
+  Marker
 }
