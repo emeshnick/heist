@@ -1,5 +1,3 @@
-const markers = []
-
 module.exports = io => {
   io.on('connection', socket => {
     console.log(`A socket connection to the server has been made: ${socket.id}`)
@@ -9,8 +7,11 @@ module.exports = io => {
     })
 
     socket.on('marker', data => {
-      markers.push(data)
       io.emit('marker', data)
+    })
+
+    socket.on('send-chat-message', (message, userId) => {
+      socket.broadcast.emit('chat-message', {...message, userId: userId})
     })
   })
 }

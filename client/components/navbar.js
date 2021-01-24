@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
+// import ChatMenu from './ChatMenu'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({handleClick, isLoggedIn, user}) => (
   <div>
     <h1>Heist</h1>
     <nav>
@@ -12,6 +13,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
+          <Link to="/profile">{user.email}</Link>
+          <Link to="/groups">Groups</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -33,6 +36,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
+    user: state.user,
     isLoggedIn: !!state.user.id
   }
 }

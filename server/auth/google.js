@@ -48,10 +48,10 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
 
   passport.use(strategy)
 
-  router.get('/', () => {
-    console.log('attempting to authenticate')
+  router.get(
+    '/',
     passport.authenticate('google', {scope: ['email', 'profile']})
-  })
+  )
 
   router.get(
     '/callback',
