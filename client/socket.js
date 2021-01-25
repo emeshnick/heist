@@ -3,8 +3,8 @@ import io from 'socket.io-client'
 // import {addMessage} from '/store/conversation'
 const socket = io(window.location.origin)
 
-const markers = []
-const users = {}
+// const markers = []
+// const users = {}
 
 socket.on('connect', () => {
   console.log('Connected!')

@@ -6,8 +6,12 @@ module.exports = io => {
       console.log(`Connection ${socket.id} has left the building`)
     })
 
-    socket.on('marker', data => {
-      io.emit('marker', data)
+    socket.on('send-marker', data => {
+      socket.broadcast.emit('marker', data)
+    })
+
+    socket.on('send-marker-delete', data => {
+      socket.broadcast.emit('marker-delete', data)
     })
 
     socket.on('send-chat-message', (message, userId) => {
