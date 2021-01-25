@@ -61,6 +61,8 @@
     "react-bootstrap": "^1.4.3",
     "react-bulma-components": "^3.4.0",
     "react-dom": "^16.8.6",
+    "react-map-gl": "^6.0.3",
+    "react-mapbox-gl": "^4.8.6",
     "react-onclickoutside": "^6.9.1",
     "react-redux": "^7.0.1",
     "react-router-dom": "^5.0.0",
