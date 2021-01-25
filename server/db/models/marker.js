@@ -7,9 +7,6 @@ const Marker = db.define('marker', {
   },
   descriptions: {
     type: Sequelize.JSON
-  },
-  coords: {
-    type: Sequelize.STRING
   }
 })
 
