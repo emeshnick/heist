@@ -25,14 +25,6 @@ form div {
   display: inline-block;
 }
 
-/* .mapboxgl-canvas {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-} */
-
 #map {
   flex: 2;
   height: calc(100vh - 3rem);
@@ -49,11 +41,42 @@ form div {
   }
 }
 
-/* .marker {
+#interactive-map {
+  position: fixed;
+  bottom: 50px;
+  z-index: -10;
+}
 
-} */
+#send-location-button {
+  bottom: 0px;
+  right: 40px;
+  margin: 15px;
+  position: fixed;
+}
+
+#chat-container {
+  background-color: white;
+  width: 50vw;
+}
 
 .dropdown {
   position: relative;
   z-index: 10;
+}
+
+.svg-icon {
+  width: 3em;
+  height: 3em;
+  transform: translate(-1.5em, -1.5em);
+}
+
+.svg-icon path,
+.svg-icon polygon,
+.svg-icon rect {
+  fill: #4691f6;
+}
+
+.svg-icon circle {
+  stroke: #4691f6;
+  stroke-width: 3;
 }
