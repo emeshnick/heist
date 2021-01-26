@@ -5,7 +5,7 @@ import {
   addMarker,
   receiveMarker,
   deleteMarker,
-  deletedMarker,
+  deletedMarker
 } from '../store/markers'
 import {Button} from 'react-bulma-components'
 import ReactMapGL, {Popup, GeolocateControl} from 'react-map-gl'
@@ -23,7 +23,7 @@ const geolocateStyle = {
   right: 0,
   margin: 10,
   position: 'fixed',
-  captureClick: 'true',
+  captureClick: 'true'
 }
 const positionOptions = {enableHighAccuracy: true}
 class MapGl extends React.Component {
@@ -43,12 +43,12 @@ class MapGl extends React.Component {
         longitude: -79,
         zoom: 9,
         bearing: 0,
-        pitch: 0,
+        pitch: 0
       },
       popupInfo: null,
       userLocation: {
-        lngLat: [],
-      },
+        lngLat: []
+      }
     }
   }
 
@@ -56,11 +56,11 @@ class MapGl extends React.Component {
     this.props.fetchMarkers(1)
 
     //Set up socket to receive marker and send to redux reducer
-    socket.on('marker', (data) => this.props.receiveMarker(data.markerId))
+    socket.on('marker', data => this.props.receiveMarker(data.markerId))
 
     //Calls action creator from markers reducer since nothing
     //needs to be requested from the database
-    socket.on('marker-delete', (data) => {
+    socket.on('marker-delete', data => {
       this.props.deletedMarker(data.markerId)
       if (this.state.popupInfo && data.markerId === this.state.popupInfo.id) {
         this.setState({popupInfo: null})
@@ -74,7 +74,7 @@ class MapGl extends React.Component {
       const newMarker = {
         conversationId: 1,
         lngLat: event.lngLat,
-        descriptions: [],
+        descriptions: []
       }
       this.props.addMarker(newMarker)
     }
@@ -86,7 +86,7 @@ class MapGl extends React.Component {
     this.props.deleteMarker(markerId)
   }
 
-  onClickMarker = (marker) => {
+  onClickMarker = marker => {
     this.setState({popupInfo: marker})
   }
 
@@ -130,11 +130,11 @@ class MapGl extends React.Component {
 
   //User location methods
   sendCurrentLocation = () => {
-    navigator.geolocation.getCurrentPosition((data) =>
+    navigator.geolocation.getCurrentPosition(data =>
       this.setState({
         userLocation: {
-          lngLat: [data.coords.longitude, data.coords.latitude],
-        },
+          lngLat: [data.coords.longitude, data.coords.latitude]
+        }
       })
     )
 
@@ -168,9 +168,9 @@ class MapGl extends React.Component {
           <ReactMapGL
             {...this.state.viewport}
             mapStyle="mapbox://styles/mapbox/streets-v9"
-            onViewportChange={(viewport) => this.setState({viewport})}
+            onViewportChange={viewport => this.setState({viewport})}
             mapboxApiAccessToken={mapboxToken}
-            onClick={(event) => this.addMarker(event)}
+            onClick={event => this.addMarker(event)}
             style={{marginbottom: 30}}
           >
             {this.state.userLocation.lngLat.length &&
@@ -196,20 +196,20 @@ class MapGl extends React.Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     conversation: state.conversation,
-    markers: state.markers,
+    markers: state.markers
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
-    fetchMarkers: (conversationId) => dispatch(fetchMarkers(conversationId)),
-    addMarker: (marker) => dispatch(addMarker(marker)),
-    receiveMarker: (markerId) => dispatch(receiveMarker(markerId)),
-    deleteMarker: (markerId) => dispatch(deleteMarker(markerId)),
-    deletedMarker: (markerId) => dispatch(deletedMarker(markerId)),
+    fetchMarkers: conversationId => dispatch(fetchMarkers(conversationId)),
+    addMarker: marker => dispatch(addMarker(marker)),
+    receiveMarker: markerId => dispatch(receiveMarker(markerId)),
+    deleteMarker: markerId => dispatch(deleteMarker(markerId)),
+    deletedMarker: markerId => dispatch(deletedMarker(markerId))
   }
 }
 

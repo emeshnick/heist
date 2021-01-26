@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {
   addMessage,
   receiveMessage,
-  fetchConversation,
+  fetchConversation
 } from '../store/conversation'
 import socket from '../socket'
 class Chat extends React.Component {
@@ -13,7 +13,7 @@ class Chat extends React.Component {
     this.onChange = this.onChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.state = {
-      content: '',
+      content: ''
     }
     this.setUpSocket = this.setUpSocket.bind(this)
     this.setUpSocket()
@@ -25,7 +25,7 @@ class Chat extends React.Component {
 
   //Socket method
   setUpSocket() {
-    socket.on('chat-message', (data) => {
+    socket.on('chat-message', data => {
       this.props.receiveMessage(data.data)
     })
   }
@@ -42,11 +42,11 @@ class Chat extends React.Component {
     const message = {
       content: this.state.content,
       conversationId: this.props.conversation.id,
-      userId: this.props.user.id,
+      userId: this.props.user.id
     }
     this.props.addMessage(message)
     this.setState({
-      content: '',
+      content: ''
     })
   }
 
@@ -60,7 +60,7 @@ class Chat extends React.Component {
     return (
       <div id="chat-container" onDoubleClick={this.toBottom}>
         {conversation.messages &&
-          conversation.messages.map((message) => {
+          conversation.messages.map(message => {
             if (message.userId === user.id) {
               return (
                 <div key={message.id}>
@@ -98,19 +98,19 @@ class Chat extends React.Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
     user: state.user,
-    conversation: state.conversation,
+    conversation: state.conversation
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
-    addMessage: (message) => dispatch(addMessage(message)),
-    receiveMessage: (message) => dispatch(receiveMessage(message)),
-    fetchConversation: (conversationId) =>
-      dispatch(fetchConversation(conversationId)),
+    addMessage: message => dispatch(addMessage(message)),
+    receiveMessage: message => dispatch(receiveMessage(message)),
+    fetchConversation: conversationId =>
+      dispatch(fetchConversation(conversationId))
   }
 }
 

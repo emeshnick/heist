@@ -7,11 +7,11 @@ class ChatMenu extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: false,
+      open: false
     }
   }
   toggle = () => {
-    this.setState((oldstate) => ({open: !oldstate.open}))
+    this.setState(oldstate => ({open: !oldstate.open}))
   }
 
   onToggle = (isOpen, e, source) => {
@@ -25,7 +25,7 @@ class ChatMenu extends React.Component {
     const {conversation} = this.props
     return (
       <div
-        ref={(ref) => (this.myRef = ref)}
+        ref={ref => (this.myRef = ref)}
         id="navChat"
         className="CustomDropdown"
       >
@@ -46,7 +46,7 @@ class ChatMenu extends React.Component {
                     ? this.myRef.getBoundingClientRect().top +
                       this.myRef.getBoundingClientRect().height +
                       100
-                    : 200),
+                    : 200)
               }}
             >
               <Chat conversationId={conversation.id} />
@@ -60,13 +60,13 @@ class ChatMenu extends React.Component {
   }
 }
 
-const mapState = (state) => {
+const mapState = state => {
   return {
-    conversation: state.conversation,
+    conversation: state.conversation
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {}
 }
 
