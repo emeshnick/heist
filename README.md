@@ -17,3 +17,8 @@ Run program.
 ```
 npm run start
 ```
+
+# Tech Stack
+
+React, Redux, Express, React Map GL, Socket.io
+
