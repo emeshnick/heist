@@ -1,6 +1,6 @@
 # Heist
 
-A messaging application using Socket.io.
+A messaging application using Socket.io. Users can add points to a map that are displayed in real time to the members of their group.
 
 ## Setup
 
