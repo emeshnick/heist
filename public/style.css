@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  height: 100vh;
 }
 
 a {
@@ -41,10 +42,31 @@ form div {
   }
 }
 
-#interactive-map {
-  position: fixed;
-  bottom: 50px;
-  z-index: -10;
+#app {
+  height: 100%;
+}
+
+#app-component {
+  height: 100%;
+}
+
+#main {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+#chatbar {
+  flex-basis: 20%;
+  height: 100%;
+  background-color: aqua;
+}
+
+#map-gl {
+  flex-basis: 80%;
+  margin-bottom: 50px;
+  background-color: green;
+  margin-bottom: 100px;
 }
 
 #send-location-button {

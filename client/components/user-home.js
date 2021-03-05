@@ -1,33 +1,34 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import MapGl from './MapGl'
-import ChatMenu from './ChatMenu'
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import MapGl from "./MapGl";
+import ChatMenu from "./ChatMenu";
+import ChatBar from "./ChatBar";
 
 /**
  * COMPONENT
  */
-export const UserHome = props => {
+export const UserHome = (props) => {
   // const {email} = props
 
   return (
-    <div>
-      <ChatMenu title="Messages" />
+    <div id="main">
+      <ChatBar />
       <MapGl />
     </div>
-  )
-}
+  );
+};
 
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
-    email: state.user.email
-  }
-}
+    email: state.user.email,
+  };
+};
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(UserHome);
 
 /**
  * PROP TYPES

@@ -1,31 +1,31 @@
-import React from 'react'
-import Chat from './Chat'
-import {Button, Dropdown, MenuItem} from 'react-bootstrap'
-import {connect} from 'react-redux'
+import React from "react";
+import Chat from "./Chat";
+import { Button, Dropdown, MenuItem } from "react-bootstrap";
+import { connect } from "react-redux";
 
 class ChatMenu extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      open: false
-    }
+      open: false,
+    };
   }
   toggle = () => {
-    this.setState(oldstate => ({open: !oldstate.open}))
-  }
+    this.setState((oldstate) => ({ open: !oldstate.open }));
+  };
 
   onToggle = (isOpen, e, source) => {
     //This closes the menu on toggling the dropdown or hitting esc.
-    if (source.source === 'click' || source.source === 'rootClose') {
-      this.toggle()
+    if (source.source === "click" || source.source === "rootClose") {
+      this.toggle();
     }
-  }
+  };
 
   render() {
-    const {conversation} = this.props
+    const { conversation } = this.props;
     return (
       <div
-        ref={ref => (this.myRef = ref)}
+        ref={(ref) => (this.myRef = ref)}
         id="navChat"
         className="CustomDropdown"
       >
@@ -39,35 +39,35 @@ class ChatMenu extends React.Component {
             <Dropdown.Menu
               id="chat-scroll"
               style={{
-                overflowY: 'scroll',
+                overflowY: "scroll",
                 maxHeight:
                   window.innerHeight -
                   (this.myRef
                     ? this.myRef.getBoundingClientRect().top +
                       this.myRef.getBoundingClientRect().height +
                       100
-                    : 200)
+                    : 200),
               }}
             >
               <Chat conversationId={conversation.id} />
             </Dropdown.Menu>
           </Dropdown>
         ) : (
-          <h3>Choose Group To Begin Heist</h3>
+          <h3>Rendering Chat Menu</h3>
         )}
       </div>
-    )
+    );
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
-    conversation: state.conversation
-  }
-}
+    conversation: state.conversation,
+  };
+};
 
-const mapDispatch = dispatch => {
-  return {}
-}
+const mapDispatch = (dispatch) => {
+  return {};
+};
 
-export default connect(mapState, mapDispatch)(ChatMenu)
+export default connect(mapState, mapDispatch)(ChatMenu);
