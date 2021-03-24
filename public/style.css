@@ -59,13 +59,11 @@ form div {
 #chatbar {
   flex-basis: 20%;
   height: 100%;
-  background-color: aqua;
 }
 
 #map-gl {
   flex-basis: 80%;
   margin-bottom: 50px;
-  background-color: green;
   margin-bottom: 100px;
 }
 
